@@ -1,0 +1,147 @@
+{
+  "name": "cellml-editor",
+  "productName": "CellML Editor",
+  "version": "0.0.1",
+  "description": "A CellML 2.0 editor",
+  "main": ".webpack/main",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development electron-forge start",
+    "package": "electron-forge package",
+    "package-mac": "electron-forge package --platform darwin",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "eslint --ext .ts .",
+    "test": "npm rebuild libxmljs2 --update-binary && jest"
+  },
+  "keywords": [],
+  "author": {
+    "name": "UNSW CellML Editor Thesis Group",
+    "email": ""
+  },
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "cellml_editor"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ],
+      "plugins": [
+        [
+          "@electron-forge/plugin-webpack",
+          {
+            "mainConfig": "./webpack.main.config.js",
+            "renderer": {
+              "config": "./webpack.renderer.config.js",
+              "entryPoints": [
+                {
+                  "html": "./src/renderer/index.html",
+                  "js": "./src/renderer/renderer.ts",
+                  "name": "main_window"
+                }
+              ]
+            }
+          }
+        ]
+      ]
+    }
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.54",
+    "@electron-forge/maker-deb": "^6.0.0-beta.54",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.54",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
+    "@electron-forge/maker-zip": "^6.0.0-beta.54",
+    "@electron-forge/plugin-webpack": "6.0.0-beta.54",
+    "@marshallofsound/webpack-asset-relocator-loader": "^0.5.0",
+    "@types/diff": "^5.0.1",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.12.2",
+    "@types/react": "^17.0.4",
+    "@types/react-dom": "^17.0.3",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "copy-webpack-plugin": "^6.4.1",
+    "css-loader": "^5.2.6",
+    "electron": "12.0.5",
+    "electron-packager": "^15.4.0",
+    "eslint": "^7.25.0",
+    "eslint-plugin-import": "^2.20.0",
+    "file-loader": "^6.2.0",
+    "fork-ts-checker-webpack-plugin": "^5.0.14",
+    "jest": "^27.0.5",
+    "node-loader": "^1.0.1",
+    "style-loader": "^1.2.1",
+    "ts-loader": "^8.0.2",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
+    "@material-ui/core": "^4.12.2",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.60",
+    "@monaco-editor/react": "^4.1.3",
+    "@mui/material": "^5.0.6",
+    "@types/mousetrap": "^1.6.8",
+    "@types/nedb": "^1.8.12",
+    "@types/pdfjs-dist": "^2.7.3",
+    "@types/react-pdf": "^5.0.4",
+    "@types/xml-js": "^1.0.0",
+    "@vscode/codicons": "0.0.20",
+    "ajv": "^8.6.3",
+    "better-react-mathjax": "^1.0.2",
+    "cross-env": "^7.0.3",
+    "diff": "^5.0.0",
+    "electron-fetch": "^1.7.4",
+    "electron-squirrel-startup": "^1.0.0",
+    "electron-store": "^8.0.1",
+    "find-open-port": "^2.0.3",
+    "indent-string": "^5.0.0",
+    "libcellml.js": "^0.2.0-dev.21",
+    "libxmljs2": "^0.27.0",
+    "mathjax-react": "^1.0.6",
+    "monaco-editor": "^0.23.0",
+    "mousetrap": "^1.6.5",
+    "nedb": "^1.8.0",
+    "pdfjs-dist": "^2.5.207",
+    "postscribe": "^2.0.8",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-electron-window-menu": "^0.6.2",
+    "react-hot-loader": "^4.13.0",
+    "react-jsx-parser": "^1.28.4",
+    "react-load-script": "^0.0.6",
+    "react-pdf": "^5.3.0",
+    "react-pdfjs-multi": "^0.5.1",
+    "react-reflex": "^4.0.1",
+    "redent": "^4.0.0",
+    "sass": "^1.34.0",
+    "sass-loader": "^10.1.1",
+    "spectron": "^14.0.0",
+    "strip-indent": "^4.0.0",
+    "ts-jest": "^27.0.3",
+    "xml-formatter": "^2.5.1",
+    "xml-js": "^1.6.11",
+    "xml2json": "^0.12.0",
+    "yarn": "^1.22.17"
+  }
+}
